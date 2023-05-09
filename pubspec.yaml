@@ -1,0 +1,38 @@
+name: flutter_riverpod_firebase_ddd_app
+description: A new Flutter project.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  ###  Firebase  ###
+  firebase_core: any
+  cloud_firestore: any
+  firebase_auth: any
+  ###  State Management  ###
+  flutter_riverpod: any
+  freezed_annotation: any
+  json_serializable: any
+  ###  routing  ###
+  go_router: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  build_runner: any
+  freezed: any
+
+flutter:
+
+  uses-material-design: true
+
