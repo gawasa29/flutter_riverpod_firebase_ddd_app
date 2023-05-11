@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/presentation/sign_up_screen.dart';
-import 'package:flutter_riverpod_firebase_ddd_app/features/user/application/user_query.dart';
-import 'package:flutter_riverpod_firebase_ddd_app/features/user/provider/di_provider.dart';
+import 'package:flutter_riverpod_firebase_ddd_app/features/user/application/user_application.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -10,6 +9,7 @@ class HomeScreen extends ConsumerWidget {
   static const routeName = 'Home';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final userCommand = ref.read(userApplicationProvider);
     final currentUser = ref.watch(userQueryProvider);
     final nameController = TextEditingController();
     return Scaffold(
@@ -50,16 +50,14 @@ class HomeScreen extends ConsumerWidget {
                     ElevatedButton(
                       child: const Text('Update'),
                       onPressed: () async {
-                        await ref
-                            .read(userCommandProvider)
-                            .updateUser(name: nameController.text);
+                        await userCommand.updateUser(name: nameController.text);
                       },
                     ),
                     ElevatedButton(
                       child: const Text('Delete'),
                       onPressed: () async {
-                        await ref.read(userCommandProvider).deleteUser();
                         context.goNamed(SignUpScreen.routeName);
+                        await userCommand.deleteUser();
                       },
                     ),
                   ],

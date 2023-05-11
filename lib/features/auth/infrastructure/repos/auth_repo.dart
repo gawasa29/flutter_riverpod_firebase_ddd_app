@@ -11,8 +11,8 @@ class AuthRepository {
     required String password,
   }) async {
     print('🐯  AuthRepository signUp IN !!! ');
-    await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password);
+    await firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
   }
 
   Future<void> signIn({
@@ -20,7 +20,7 @@ class AuthRepository {
     required String password,
   }) async {
     print('🐯  AuthRepository signIn IN !!! ');
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password);
+    await firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password);
   }
 }

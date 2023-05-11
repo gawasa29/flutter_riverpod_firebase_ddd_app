@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_firebase_ddd_app/features/auth/application/auth_application.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/presentation/sign_in_screen.dart';
-import 'package:flutter_riverpod_firebase_ddd_app/features/auth/provider/di_provider.dart';
+import 'package:flutter_riverpod_firebase_ddd_app/features/user/application/user_application.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/user/presentation/home_screen.dart';
-import 'package:flutter_riverpod_firebase_ddd_app/features/user/provider/di_provider.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends ConsumerWidget {
@@ -77,14 +77,14 @@ class SignUpScreen extends ConsumerWidget {
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     try {
-                      await ref.read(authCommandProvider).signUP(
+                      await ref.read(authApplicationProvider).signUP(
                             email: emailController.text,
                             password: passwordController.text,
                             name: usernameController.text,
                           );
 
                       await ref
-                          .read(userCommandProvider)
+                          .read(userApplicationProvider)
                           .createUser(name: usernameController.text);
 
                       context.goNamed(HomeScreen.routeName);
