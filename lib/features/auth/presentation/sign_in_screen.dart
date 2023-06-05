@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_firebase_ddd_app/common/utils/popup.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/application/auth_application.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/presentation/sign_up_screen.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/user/presentation/profile_screen.dart';
@@ -60,6 +61,7 @@ class SignInScreen extends ConsumerWidget {
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     try {
+                      loaderPopup(context);
                       await ref.read(authApplicationProvider).signIN(
                             email: emailController.text,
                             password: passwordController.text,
