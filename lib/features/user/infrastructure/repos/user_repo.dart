@@ -12,16 +12,11 @@ class UserRepository {
     await ssot.doc(user.userId).set(user);
   }
 
-  Stream<UserEntity> readUser() async* {
-    final stream = ssot
+  Stream<UserEntity> readUser() {
+    return ssot
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .snapshots()
         .map((snap) => snap.data()!);
-
-    // Streamをリッスンし、それぞれのUserEntityをyieldする
-    await for (final userEntity in stream) {
-      yield userEntity;
-    }
   }
 
   Future<void> updateUser(String name) async {
