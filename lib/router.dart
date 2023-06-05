@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/presentation/sign_in_screen.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/presentation/sign_up_screen.dart';
-import 'package:flutter_riverpod_firebase_ddd_app/features/user/presentation/home_screen.dart';
+import 'package:flutter_riverpod_firebase_ddd_app/features/user/presentation/profile_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final navigatorKey = Provider((ref) => GlobalKey<NavigatorState>());
@@ -23,9 +23,9 @@ final routerProvider = Provider(
         builder: (context, state) => const SignInScreen(),
       ),
       GoRoute(
-        path: '/Home',
-        name: HomeScreen.routeName,
-        builder: (context, state) => const HomeScreen(),
+        path: '/Profile',
+        name: ProfileScreen.routeName,
+        builder: (context, state) => const ProfileScreen(),
       ),
     ],
   ),

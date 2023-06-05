@@ -4,9 +4,9 @@ import 'package:flutter_riverpod_firebase_ddd_app/features/auth/presentation/sig
 import 'package:flutter_riverpod_firebase_ddd_app/features/user/application/user_application.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeScreen extends ConsumerWidget {
-  const HomeScreen({super.key});
-  static const routeName = 'Home';
+class ProfileScreen extends ConsumerWidget {
+  const ProfileScreen({super.key});
+  static const routeName = 'Profile';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userCommand = ref.read(userApplicationProvider);
