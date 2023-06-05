@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/common/utils/popup.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/application/auth_application.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/presentation/sign_up_screen.dart';
-import 'package:flutter_riverpod_firebase_ddd_app/features/user/presentation/profile_screen.dart';
+import 'package:flutter_riverpod_firebase_ddd_app/features/tabbar.dart';
 import 'package:go_router/go_router.dart';
 
 class SignInScreen extends ConsumerWidget {
@@ -67,7 +67,7 @@ class SignInScreen extends ConsumerWidget {
                             password: passwordController.text,
                           );
 
-                      context.goNamed(ProfileScreen.routeName);
+                      context.goNamed(TabBarScreen.routeName);
                     } catch (e) {
                       print(e);
                     }
