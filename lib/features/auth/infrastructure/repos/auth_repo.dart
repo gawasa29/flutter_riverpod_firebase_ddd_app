@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthRepository {
   AuthRepository({required this.firebaseAuth});
   final FirebaseAuth firebaseAuth;
-  @override
   Future<void> signUp({
     required String email,
     required String password,
