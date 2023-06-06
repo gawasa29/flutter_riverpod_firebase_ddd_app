@@ -47,6 +47,30 @@ void main() {
       // ProfileScreen に移動していることを確認します。
       expect(find.byType(ProfileScreen), findsOneWidget);
 
+      // logout ボタンをタップします。
+      await tester.tap(find.byIcon(Icons.logout));
+      await tester.pumpAndSettle();
+
+      // go to SignIn ボタンをタップします。
+      await tester.tap(find.widgetWithText(ElevatedButton, 'go to SignIn'));
+      await tester.pumpAndSettle();
+
+      // フォームに記入する。
+      await tester.enterText(
+          find.widgetWithText(TextFormField, 'メールアドレス'), email);
+      await tester.enterText(
+          find.widgetWithText(TextFormField, 'Password'), password);
+      // SignIn ボタンをタップします。
+      await tester.tap(find.widgetWithText(ElevatedButton, 'SignIn'));
+      await tester.pumpAndSettle();
+
+      // UserListScreen に移動していることを確認します。
+      expect(find.byType(UserListScreen), findsOneWidget);
+
+      // BottomNavigationBarのaccount_circle ボタンをタップします。
+      await tester.tap(find.byIcon(Icons.account_circle));
+      await tester.pumpAndSettle();
+
       // Delete ボタンをタップします。
       await tester.tap(find.widgetWithText(ElevatedButton, 'Delete'));
     });
