@@ -35,20 +35,48 @@ final routerProvider = Provider(
           GoRoute(
             path: '/UserList',
             name: UserListScreen.routeName,
-            builder: (context, state) => const UserListScreen(),
+            pageBuilder: (context, state) => _buildPageWithAnimation(
+              const UserListScreen(),
+            ),
           ),
           GoRoute(
             path: '/ChatRoomList',
             name: ChatRoomListScreen.routeName,
-            builder: (context, state) => const ChatRoomListScreen(),
+            pageBuilder: (context, state) => _buildPageWithAnimation(
+              const ChatRoomListScreen(),
+            ),
           ),
           GoRoute(
             path: '/Profile',
             name: ProfileScreen.routeName,
-            builder: (context, state) => const ProfileScreen(),
+            pageBuilder: (context, state) => _buildPageWithAnimation(
+              const ProfileScreen(),
+            ),
           ),
         ],
       ),
     ],
   ),
 );
+
+CustomTransitionPage<void> _buildPageWithAnimation(Widget page) {
+  return CustomTransitionPage<void>(
+    child: page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: animation,
+        child: SlideTransition(
+          position: animation.drive(
+            Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).chain(
+              CurveTween(curve: Curves.easeIn),
+            ),
+          ),
+          child: child,
+        ),
+      );
+    },
+  );
+}
