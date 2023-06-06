@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_firebase_ddd_app/features/chat/presentation/chat_room_screen.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/user/application/user_application.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/user/domain/user_entity.dart';
+import 'package:go_router/go_router.dart';
 
 class UserListScreen extends ConsumerWidget {
   const UserListScreen({super.key});
@@ -38,7 +40,12 @@ class UserList extends StatelessWidget {
         title: Text(user.name),
         trailing: IconButton(
           icon: const Icon(Icons.person_add),
-          onPressed: () {},
+          onPressed: () {
+            context.goNamed(
+              ChatRoomScreen.routeName,
+              pathParameters: <String, String>{'userId': user.userId},
+            );
+          },
         ),
       ),
     );

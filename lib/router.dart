@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/presentation/sign_in_screen.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/presentation/sign_up_screen.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/chat/presentation/chat_room_list_screen.dart';
+import 'package:flutter_riverpod_firebase_ddd_app/features/chat/presentation/chat_room_screen.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/tabbar.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/user/presentation/profile_screen.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/user/presentation/user_list_screen.dart';
@@ -33,12 +34,22 @@ final routerProvider = Provider(
         ),
         routes: [
           GoRoute(
-            path: '/UserList',
-            name: UserListScreen.routeName,
-            pageBuilder: (context, state) => _buildPageWithAnimation(
-              const UserListScreen(),
-            ),
-          ),
+              path: '/UserList',
+              name: UserListScreen.routeName,
+              pageBuilder: (context, state) => _buildPageWithAnimation(
+                    const UserListScreen(),
+                  ),
+              routes: [
+                GoRoute(
+                  parentNavigatorKey: ref.watch(rootNavigatorKey),
+                  path: 'ChatRoom/:userId',
+                  name: ChatRoomScreen.routeName,
+                  builder: (context, state) {
+                    final userId = state.pathParameters['userId']!;
+                    return ChatRoomScreen(userId: userId);
+                  },
+                )
+              ]),
           GoRoute(
             path: '/ChatRoomList',
             name: ChatRoomListScreen.routeName,
