@@ -6,12 +6,8 @@ import 'firebase_options.dart';
 import 'router.dart';
 
 void main() async {
-//クラウドファイアストアのやつ
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    //flutterfire_cliで追加されたfirebase_options.dartのためにいる。
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     const ProviderScope(
       child: MyApp(),
