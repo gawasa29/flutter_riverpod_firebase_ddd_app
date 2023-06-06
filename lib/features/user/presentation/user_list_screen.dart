@@ -5,7 +5,7 @@ import 'package:flutter_riverpod_firebase_ddd_app/features/user/domain/user_enti
 
 class UserListScreen extends ConsumerWidget {
   const UserListScreen({super.key});
-
+  static const routeName = 'UserList';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
