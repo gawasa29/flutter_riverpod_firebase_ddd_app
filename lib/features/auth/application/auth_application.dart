@@ -41,7 +41,16 @@ class AuthApplicationService {
       await authManager.signIn(email, password);
     } on FirebaseAuthException {
       print('🐯 signIN  失敗 !!! ');
+      rethrow;
+    }
+  }
 
+  Future<void> signOut() async {
+    print('🐯 AuthCommand signOut IN !!! ');
+    try {
+      await authManager.signOut();
+    } on FirebaseAuthException {
+      print('🐯 signOut  失敗 !!! ');
       rethrow;
     }
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_firebase_ddd_app/features/auth/application/auth_application.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/auth/presentation/sign_up_screen.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/user/application/user_application.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +14,17 @@ class ProfileScreen extends ConsumerWidget {
     final currentUser = ref.watch(userQueryProvider);
     final nameController = TextEditingController();
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: () {
+                context.goNamed(SignUpScreen.routeName);
+                ref.read(authApplicationProvider).signOut();
+              },
+            ),
+          ],
+        ),
         body: currentUser.when(
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (err, stack) => Text('Error $err'),

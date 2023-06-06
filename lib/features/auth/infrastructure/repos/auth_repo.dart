@@ -22,4 +22,9 @@ class AuthRepository {
     await firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
   }
+
+  Future<void> signOut() async {
+    print('🐯  AuthRepository signOut IN !!! ');
+    await FirebaseAuth.instance.signOut();
+  }
 }

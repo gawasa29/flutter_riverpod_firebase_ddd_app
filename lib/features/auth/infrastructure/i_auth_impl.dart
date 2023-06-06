@@ -25,4 +25,10 @@ class AuthImpl extends IAuthService {
       password: password,
     );
   }
+
+  @override
+  Future<void> signOut() async {
+    print('🐯  AuthImpl signOut IN !!! ');
+    await repo.signOut();
+  }
 }
