@@ -31,4 +31,10 @@ class UserRepository {
     await FirebaseAuth.instance.signOut();
     print('🐯 ユーザーを削除しました !!!');
   }
+
+  Future<List<UserEntity>> readUserList() {
+    return ssot.get().then((qs) {
+      return qs.docs.map((qds) => qds.data()).toList();
+    });
+  }
 }

@@ -22,6 +22,12 @@ final userQueryProvider = StreamProvider.autoDispose<UserEntity>((ref) {
   return ref.watch(userApplicationProvider).readUser();
 });
 
+final userListQueryProvider =
+    FutureProvider.autoDispose<List<UserEntity>>((ref) {
+  print('🐯 userListQueryProvider IN !!! ');
+  return ref.watch(userApplicationProvider).readUserList();
+});
+
 class UserApplicationService {
   UserApplicationService({
     required this.userManager,
@@ -69,6 +75,16 @@ class UserApplicationService {
       await userManager.deleteUser();
     } catch (e) {
       print('🐯 deleteUser  失敗 !!! ');
+      rethrow;
+    }
+  }
+
+  Future<List<UserEntity>> readUserList() {
+    print('🐯 UserApplication readUserList IN !!! ');
+    try {
+      return userManager.readUserList();
+    } catch (e) {
+      print('🐯 readUserList  失敗 !!! ');
       rethrow;
     }
   }

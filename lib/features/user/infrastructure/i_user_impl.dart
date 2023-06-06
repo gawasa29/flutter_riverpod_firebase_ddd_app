@@ -38,4 +38,9 @@ class UserImpl extends IUserService {
   Future<void> deleteUser() async {
     await repo.deleteUser();
   }
+
+  @override
+  Future<List<UserEntity>> readUserList() {
+    return repo.readUserList();
+  }
 }

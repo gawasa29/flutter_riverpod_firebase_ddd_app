@@ -5,4 +5,5 @@ abstract class IUserService {
   Stream<UserEntity> readUser();
   Future<void> updateUser(String name);
   Future<void> deleteUser();
+  Future<List<UserEntity>> readUserList();
 }
