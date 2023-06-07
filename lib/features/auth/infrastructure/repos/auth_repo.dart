@@ -1,16 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod_firebase_ddd_app/features/auth/infrastructure/refs/auth_refs.dart';
 
 //リポジトリパターンのクラス
 //データベース処理を分離し、抽象化してビジネスロジックのコードを見通しを良くするための設計パターンです。
 class AuthRepository {
-  AuthRepository({required this.firebaseAuth});
-  final FirebaseAuth firebaseAuth;
   Future<void> signUp({
     required String email,
     required String password,
   }) async {
     print('🐯  AuthRepository signUp IN !!! ');
-    await firebaseAuth.createUserWithEmailAndPassword(
+    await authRef.createUserWithEmailAndPassword(
         email: email, password: password);
   }
 
@@ -19,8 +18,7 @@ class AuthRepository {
     required String password,
   }) async {
     print('🐯  AuthRepository signIn IN !!! ');
-    await firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+    await authRef.signInWithEmailAndPassword(email: email, password: password);
   }
 
   Future<void> signOut() async {

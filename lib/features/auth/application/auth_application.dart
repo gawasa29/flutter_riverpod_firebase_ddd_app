@@ -6,8 +6,7 @@ import 'package:flutter_riverpod_firebase_ddd_app/features/auth/infrastructure/r
 
 final authApplicationProvider =
     Provider.autoDispose<AuthApplicationService>((ref) {
-  final firebaseAuth = FirebaseAuth.instance;
-  final authRepo = AuthRepository(firebaseAuth: firebaseAuth);
+  final authRepo = AuthRepository();
   final authImpl = AuthImpl(repo: authRepo);
   return AuthApplicationService(authManager: authImpl);
 });
