@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_firebase_ddd_app/features/user/domain/i_user.dart';
@@ -8,11 +7,7 @@ import 'package:flutter_riverpod_firebase_ddd_app/features/user/infrastructure/r
 
 final userApplicationProvider =
     Provider.autoDispose<UserApplicationService>((ref) {
-  final ssot = FirebaseFirestore.instance.collection('users').withConverter(
-        fromFirestore: (snapshot, _) => UserEntity.fromJson(snapshot.data()!),
-        toFirestore: (data, _) => data.toJson(),
-      );
-  final userRepo = UserRepository(ssot: ssot);
+  final userRepo = UserRepository();
   final userImpl = UserImpl(repo: userRepo);
   return UserApplicationService(userManager: userImpl);
 });
