@@ -7,7 +7,7 @@ import 'package:flutter_riverpod_firebase_ddd_app/features/user/infrastructure/r
 
 final userApplicationProvider =
     Provider.autoDispose<UserApplicationService>((ref) {
-  final userRepo = UserRepository();
+  final userRepo = UserRepository(ref);
   final userImpl = UserImpl(repo: userRepo);
   return UserApplicationService(userManager: userImpl);
 });
