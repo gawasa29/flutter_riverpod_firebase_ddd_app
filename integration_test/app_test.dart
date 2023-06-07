@@ -73,6 +73,7 @@ void main() {
 
       // Delete ボタンをタップします。
       await tester.tap(find.widgetWithText(ElevatedButton, 'Delete'));
+      await tester.pumpAndSettle();
     });
   });
 }
