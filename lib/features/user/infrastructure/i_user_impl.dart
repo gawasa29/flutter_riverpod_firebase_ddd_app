@@ -22,11 +22,7 @@ class UserImpl extends IUserService {
 
   @override
   Stream<UserEntity> readUser() {
-    try {
-      return repo.readUser();
-    } catch (e) {
-      rethrow;
-    }
+    return repo.readUser();
   }
 
   @override
